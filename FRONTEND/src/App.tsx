@@ -1,13 +1,19 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-
+import AuthOverlay from "./components/AuthOverlay"
+import "./index.css"
+import useGeneralStore from "./stores/generalStore"
+import { useUserStore } from "./stores/userStore"
+import EditProfileOverlay from "./components/EditProfileOverlay"
 function App() {
-  const [count, setCount] = useState(0)
-
+  const isLoginOpen = useGeneralStore((state) => state.isLoginOpen)
+  const isEditProfileOpen = useGeneralStore((state) => state.isEditProfileOpen)
   return (
-    <div className='bg-red-500'>
-      LET GO
+    <div className=" ">
+      {isLoginOpen && (
+        <>
+          <AuthOverlay />
+        </>
+      )}{" "}
+      {isEditProfileOpen && <EditProfileOverlay />}
     </div>
   )
 }
